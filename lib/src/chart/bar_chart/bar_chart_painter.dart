@@ -377,6 +377,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
         double x = groupBarPos.groupX;
         final double y = drawSize.height + getTopOffsetDrawSize() + bottomTitles.margin;
 
+        x -= tp.width / 2;
         canvas.save();
         canvas.translate(x + tp.width / 2, y + tp.height / 2);
         canvas.rotate(radians(bottomTitles.rotateAngle));
