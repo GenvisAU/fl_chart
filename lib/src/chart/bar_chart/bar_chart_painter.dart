@@ -226,7 +226,12 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
                 bottomRight: borderRadius.bottomRight);
           }
 
-          _barPaint.color = barRod.backDrawRodData.color;
+          if (barRod.backDrawRodData.gradientColors != null) {
+            _barPaint.shader = LinearGradient(colors: barRod.backDrawRodData.gradientColors).createShader(barRRect.outerRect);
+          } else {
+            _barPaint.color = barRod.backDrawRodData.color;
+          }
+
           canvas.drawRRect(barRRect, _barPaint);
         }
 
@@ -254,7 +259,12 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
                 bottomRight: borderRadius.bottomRight);
           }
 
-          _barPaint.color = barRod.color;
+          if (barRod.backDrawRodData.gradientColors != null) {
+            _barPaint.shader = LinearGradient(colors: barRod.backDrawRodData.gradientColors).createShader(barRRect.outerRect);
+          } else {
+            _barPaint.color = barRod.backDrawRodData.color;
+          }
+
           canvas.drawRRect(barRRect, _barPaint);
 
           // draw rod stack
@@ -264,7 +274,12 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
               final stackFromY = getPixelY(stackItem.fromY, drawSize);
               final stackToY = getPixelY(stackItem.toY, drawSize);
 
-              _barPaint.color = stackItem.color;
+              if (stackItem.gradientColors != null) {
+                _barPaint.shader = LinearGradient(colors: stackItem.gradientColors).createShader(Rect.fromLTRB(left, stackToY, right, stackFromY));
+              } else {
+                _barPaint.color = stackItem.color;
+              }
+
               canvas.save();
               canvas.clipRect(Rect.fromLTRB(left, stackToY, right, stackFromY));
               canvas.drawRRect(barRRect, _barPaint);

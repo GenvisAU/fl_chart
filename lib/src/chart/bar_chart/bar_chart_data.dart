@@ -428,6 +428,8 @@ class BarChartRodStackItem with EquatableMixin {
   /// Renders a Stacked Chart section with [color]
   final Color color;
 
+  final List<Color> gradientColors;
+
   /// Renders a section of Stacked Chart from [fromY] to [toY] with [color]
   /// for example if you want to have a Stacked Chart with three colors:
   /// ```
@@ -441,7 +443,7 @@ class BarChartRodStackItem with EquatableMixin {
   ///   ]
   /// )
   /// ```
-  BarChartRodStackItem(this.fromY, this.toY, this.color);
+  BarChartRodStackItem(this.fromY, this.toY, this.color, this.gradientColors);
 
   /// Copies current [BarChartRodStackItem] to a new [BarChartRodStackItem],
   /// and replaces provided values.
@@ -449,11 +451,13 @@ class BarChartRodStackItem with EquatableMixin {
     double fromY,
     double toY,
     Color color,
+    List<Color> gradientColors,
   }) {
     return BarChartRodStackItem(
       fromY ?? this.fromY,
       toY ?? this.toY,
       color ?? this.color,
+      gradientColors ?? this.gradientColors
     );
   }
 
@@ -463,6 +467,7 @@ class BarChartRodStackItem with EquatableMixin {
       lerpDouble(a.fromY, b.fromY, t),
       lerpDouble(a.toY, b.toY, t),
       Color.lerp(a.color, b.color, t),
+      a.gradientColors
     );
   }
 
@@ -472,6 +477,7 @@ class BarChartRodStackItem with EquatableMixin {
         fromY,
         toY,
         color,
+        gradientColors
       ];
 }
 
@@ -490,6 +496,9 @@ class BackgroundBarChartRodData with EquatableMixin {
   /// it will be rendered with filled [color]
   final Color color;
 
+  // or gradient
+  final List<Color> gradientColors;
+
   /// It will be rendered in rear of the main rod,
   /// with [y] as the height, and [color] as the fill color,
   /// you prevent to show it, using [show] property.
@@ -497,9 +506,11 @@ class BackgroundBarChartRodData with EquatableMixin {
     double y,
     bool show,
     Color color,
+    List<Color> gradientColors,
   })  : y = y ?? 8,
         show = show ?? false,
-        color = color ?? Colors.blueGrey;
+        color = color ?? Colors.blueGrey,
+        gradientColors = gradientColors;
 
   /// Lerps a [BackgroundBarChartRodData] based on [t] value, check [Tween.lerp].
   static BackgroundBarChartRodData lerp(
