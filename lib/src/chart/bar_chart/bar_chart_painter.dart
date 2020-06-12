@@ -259,7 +259,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
                 bottomRight: borderRadius.bottomRight);
           }
 
-          if (barRod.backDrawRodData.gradientColors != null) {
+          if (barRod.gradientColors != null) {
             _barPaint.shader = LinearGradient(colors: barRod.gradientColors).createShader(barRRect.outerRect);
           } else {
             _barPaint.color = barRod.backDrawRodData.color;
