@@ -318,6 +318,9 @@ class BarChartRodData with EquatableMixin {
   /// [BarChart] renders each rods using this [color].
   final Color color;
 
+  /// [BarChart] renders using a gradient
+  final List<Color> gradientColors;
+
   /// [BarChart] renders each rods with this value.
   final double width;
 
@@ -359,12 +362,14 @@ class BarChartRodData with EquatableMixin {
   BarChartRodData({
     double y,
     Color color,
+    List<Color> gradientColors,
     double width,
     BorderRadius borderRadius,
     BackgroundBarChartRodData backDrawRodData,
     List<BarChartRodStackItem> rodStackItem,
   })  : y = y,
         color = color ?? Colors.blueAccent,
+        gradientColors = gradientColors,
         width = width ?? 8,
         borderRadius = normalizeBorderRadius(borderRadius, width ?? 8),
         backDrawRodData = backDrawRodData ?? BackgroundBarChartRodData(),
@@ -375,6 +380,7 @@ class BarChartRodData with EquatableMixin {
   BarChartRodData copyWith({
     double y,
     Color color,
+    List<Color> gradientColors,
     double width,
     Radius borderRadius,
     BackgroundBarChartRodData backDrawRodData,
@@ -383,6 +389,7 @@ class BarChartRodData with EquatableMixin {
     return BarChartRodData(
       y: y ?? this.y,
       color: color ?? this.color,
+      gradientColors: gradientColors ?? this.gradientColors,
       width: width ?? this.width,
       borderRadius: borderRadius ?? this.borderRadius,
       backDrawRodData: backDrawRodData ?? this.backDrawRodData,
@@ -394,6 +401,7 @@ class BarChartRodData with EquatableMixin {
   static BarChartRodData lerp(BarChartRodData a, BarChartRodData b, double t) {
     return BarChartRodData(
       color: Color.lerp(a.color, b.color, t),
+      gradientColors: a.gradientColors,
       width: lerpDouble(a.width, b.width, t),
       borderRadius: BorderRadius.lerp(a.borderRadius, b.borderRadius, t),
       y: lerpDouble(a.y, b.y, t),
@@ -407,6 +415,7 @@ class BarChartRodData with EquatableMixin {
   List<Object> get props => [
         y,
         color,
+        gradientColors,
         width,
         borderRadius,
         backDrawRodData,
