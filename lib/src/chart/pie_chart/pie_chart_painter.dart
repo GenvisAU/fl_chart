@@ -81,16 +81,24 @@ class PieChartPainter extends BaseChartPainter<PieChartData> with TouchHandler<P
       final section = data.sections[i];
       final sectionDegree = sectionsAngle[i];
 
+      final double startAngle = tempAngle;
+      final double sweepAngle = sectionDegree;
+
       final rect = Rect.fromCircle(
         center: center,
         radius: _calculateCenterRadius(viewSize, data.centerSpaceRadius) + (section.radius / 2),
       );
 
-      _sectionPaint.color = section.color;
-      _sectionPaint.strokeWidth = section.radius;
+      if (section.gradientColors != null) {
+        _sectionPaint.shader = SweepGradient(
+          colors: section.gradientColors,
+          stops: [tempAngle/360, sweepAngle/360]
+        ).createShader(Rect.fromLTWH(0, 0, viewSize.width, viewSize.height));
+      } else {
+        _sectionPaint.color = section.color;
+      }
 
-      final double startAngle = tempAngle;
-      final double sweepAngle = sectionDegree;
+      _sectionPaint.strokeWidth = section.radius;
       canvas.drawArc(
         rect,
         radians(startAngle),

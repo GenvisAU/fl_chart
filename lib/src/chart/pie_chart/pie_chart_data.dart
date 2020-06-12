@@ -129,6 +129,9 @@ class PieChartSectionData with EquatableMixin {
   /// Defines the color of section.
   final Color color;
 
+  /// Defines the gradient of the section
+  final List<Color> gradientColors;
+
   /// Defines the radius of section.
   final double radius;
 
@@ -165,13 +168,15 @@ class PieChartSectionData with EquatableMixin {
   PieChartSectionData({
     double value,
     Color color,
+    List<Color> gradientColors,
     double radius,
     bool showTitle,
     TextStyle titleStyle,
     String title,
     double titlePositionPercentageOffset,
   })  : value = value ?? 10,
-        color = color ?? Colors.red,
+        color = color ?? (gradientColors == null ? Colors.red : null),
+        gradientColors = gradientColors,
         radius = radius ?? 40,
         showTitle = showTitle ?? true,
         titleStyle = titleStyle ??
@@ -184,6 +189,7 @@ class PieChartSectionData with EquatableMixin {
   PieChartSectionData copyWith({
     double value,
     Color color,
+    List<Color> gradientColors,
     double radius,
     bool showTitle,
     TextStyle titleStyle,
@@ -193,6 +199,7 @@ class PieChartSectionData with EquatableMixin {
     return PieChartSectionData(
       value: value ?? this.value,
       color: color ?? this.color,
+      gradientColors: gradientColors ?? this.gradientColors,
       radius: radius ?? this.radius,
       showTitle: showTitle ?? this.showTitle,
       titleStyle: titleStyle ?? this.titleStyle,
@@ -207,6 +214,7 @@ class PieChartSectionData with EquatableMixin {
     return PieChartSectionData(
       value: lerpDouble(a.value, b.value, t),
       color: Color.lerp(a.color, b.color, t),
+      gradientColors: a.gradientColors,
       radius: lerpDouble(a.radius, b.radius, t),
       showTitle: b.showTitle,
       titleStyle: TextStyle.lerp(a.titleStyle, b.titleStyle, t),
@@ -221,6 +229,7 @@ class PieChartSectionData with EquatableMixin {
   List<Object> get props => [
         value,
         color,
+        gradientColors,
         radius,
         showTitle,
         titleStyle,
