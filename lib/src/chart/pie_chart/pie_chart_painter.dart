@@ -89,8 +89,8 @@ class PieChartPainter extends BaseChartPainter<PieChartData> with TouchHandler<P
         radius: _calculateCenterRadius(viewSize, data.centerSpaceRadius) + (section.radius / 2),
       );
 
-      final double startStopPoint = ((tempAngle + data.startDegreeOffset) % 360) / 360;
-      final double endStopPoint = ((sweepAngle + data.startDegreeOffset) % 360) / 360;
+      final double startStopPoint = ((tempAngle - data.startDegreeOffset) % 360) / 360;
+      final double endStopPoint = ((sweepAngle - data.startDegreeOffset) % 360) / 360;
 
       if (section.gradientColors != null) {
         _sectionPaint.shader = SweepGradient(
