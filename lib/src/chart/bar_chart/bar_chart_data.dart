@@ -368,7 +368,7 @@ class BarChartRodData with EquatableMixin {
     BackgroundBarChartRodData backDrawRodData,
     List<BarChartRodStackItem> rodStackItem,
   })  : y = y,
-        color = color ?? Colors.blueAccent,
+        color = color ?? (gradientColors != null ? null : Colors.blueAccent),
         gradientColors = gradientColors,
         width = width ?? 8,
         borderRadius = normalizeBorderRadius(borderRadius, width ?? 8),
