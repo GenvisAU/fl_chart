@@ -96,7 +96,6 @@ class PieChartPainter extends BaseChartPainter<PieChartData> with TouchHandler<P
           startAngle: radians(startAngle),
           endAngle: radians(sweepAngle),
           center: Alignment.center,
-          transform: GradientRotation(radians(data.centerSpaceRadius))
         ).createShader(Rect.fromLTWH(0, 0, viewSize.width, viewSize.height));
       } else {
         _sectionPaint.color = section.color;
