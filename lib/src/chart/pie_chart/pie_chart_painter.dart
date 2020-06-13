@@ -90,12 +90,18 @@ class PieChartPainter extends BaseChartPainter<PieChartData> with TouchHandler<P
       );
 
       if (section.gradientColors != null) {
-        _sectionPaint.shader = SweepGradient(
+//        _sectionPaint.shader = SweepGradient(
+//          colors: section.gradientColors,
+//          stops: const [0.0, 1.0],
+//          startAngle: radians(startAngle),
+//          endAngle: radians(sweepAngle),
+//          center: Alignment.center,
+//        ).createShader(Rect.fromLTWH(0, 0, viewSize.width, viewSize.height));
+        _sectionPaint.shader = LinearGradient(
           colors: section.gradientColors,
           stops: const [0.0, 1.0],
-          startAngle: radians(startAngle),
-          endAngle: radians(sweepAngle),
-          center: Alignment.center,
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
         ).createShader(Rect.fromLTWH(0, 0, viewSize.width, viewSize.height));
       } else {
         _sectionPaint.color = section.color;
