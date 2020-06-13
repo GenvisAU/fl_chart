@@ -227,7 +227,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
           }
 
           if (barRod.backDrawRodData.gradientColors != null) {
-            _barPaint.shader = LinearGradient(colors: barRod.backDrawRodData.gradientColors, begin: Alignment.centerLeft, end: Alignment.centerRight).createShader(barRRect.outerRect);
+            _barPaint.shader = LinearGradient(colors: barRod.backDrawRodData.gradientColors, begin: Alignment.bottomCenter, end: Alignment.topCenter).createShader(barRRect.outerRect);
           } else {
             _barPaint.color = barRod.backDrawRodData.color;
           }
@@ -260,7 +260,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
           }
 
           if (barRod.gradientColors != null) {
-            _barPaint.shader = LinearGradient(colors: barRod.gradientColors, begin: Alignment.centerLeft, end: Alignment.centerRight).createShader(barRRect.outerRect);
+            _barPaint.shader = LinearGradient(colors: barRod.gradientColors, begin: Alignment.bottomCenter, end: Alignment.topCenter).createShader(barRRect.outerRect);
           } else {
             _barPaint.color = barRod.backDrawRodData.color;
           }
@@ -275,7 +275,7 @@ class BarChartPainter extends AxisChartPainter<BarChartData> with TouchHandler<B
               final stackToY = getPixelY(stackItem.toY, drawSize);
 
               if (stackItem.gradientColors != null) {
-                _barPaint.shader = LinearGradient(colors: stackItem.gradientColors, begin: Alignment.centerLeft, end: Alignment.centerRight).createShader(Rect.fromLTRB(left, stackToY, right, stackFromY));
+                _barPaint.shader = LinearGradient(colors: stackItem.gradientColors, begin: Alignment.bottomCenter, end: Alignment.topCenter).createShader(Rect.fromLTRB(left, stackToY, right, stackFromY));
               } else {
                 _barPaint.color = stackItem.color;
               }
